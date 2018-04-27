@@ -23,7 +23,10 @@
 	
 	<div id="container">
 		<div id="content">
-		
+		<!-- add customer button -->
+		<input type="button" value="Add customer" onclick="window.location.href='showFormForAdd'; return false"
+		class="add-button"
+		/>
 			<!--  add our html table here -->
 		
 			<table>
@@ -43,7 +46,7 @@
 					</tr>
 				
 				</c:forEach>
-				Second git Commit		
+						
 			</table>
 				
 		</div>
