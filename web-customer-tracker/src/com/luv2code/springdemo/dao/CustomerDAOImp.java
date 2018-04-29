@@ -33,4 +33,33 @@ public class CustomerDAOImp implements CustomerDAO {
 		return customers;
 	}
 
+	@Override
+	public void saveCustomer(Customer thecustomer) {
+		// get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		//save the customer ... 
+		currentSession.saveOrUpdate(thecustomer);
+		
+	}
+
+	@Override
+	public Customer getCustomer(int theID) {
+		//get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		//now retriew/read from the database
+		Customer theCustomer= currentSession.get(Customer.class,theID);
+		
+		return theCustomer;
+	}
+
+	@Override
+	public void deleteCustomer(int theId) {
+		// get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		//save the customer ... 
+		Customer theCustomer= currentSession.get(Customer.class,theId);
+		currentSession.delete(theCustomer);
+		
+	}
+
 }
