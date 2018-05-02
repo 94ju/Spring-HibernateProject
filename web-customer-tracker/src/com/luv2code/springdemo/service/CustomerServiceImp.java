@@ -35,5 +35,11 @@ public class CustomerServiceImp implements CustomerService {
 	public void deleteCustomer(int theID) {
 		 customerDAO.deleteCustomer(theID);
 	}
+	@Override
+	@Transactional
+	public List<Customer>  searchcustomer(String customername) {
+		// get customer from cusotmerDoaa
+		return customerDAO.searchcustomer(customername);
+	}
 
 }

@@ -62,4 +62,33 @@ public class CustomerDAOImp implements CustomerDAO {
 		
 	}
 
+	@Override
+	public List<Customer> searchcustomer(String customername) {
+		// get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query theQuery = null;
+		
+		//
+		// only search by name if theSearchName is not empty
+		//
+		if (customername != null && customername.trim().length() > 0) {
+
+			// search for firstName or lastName ... case insensitive
+			theQuery =currentSession.createQuery("from Customer where lower(firstName) like :theName or lower(lastName) like :theName", Customer.class);
+			theQuery.setParameter("theName", "%" + customername.toLowerCase() + "%");
+
+		}
+		else {
+			// theSearchName is empty ... so just get all customers
+			theQuery =currentSession.createQuery("from Customer", Customer.class);			
+		}
+		
+		// execute query and get result list
+		List<Customer> customers = theQuery.getResultList();
+				
+		// return the results		
+		return customers;
+	}
+
 }
